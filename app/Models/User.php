@@ -43,5 +43,10 @@ class User extends BaseModel implements
 	{
 		return $this->hasMany(Post::class);
 	}
+
+	public function isAdmin()
+	{
+		return $this->is_admin;
+	}
 }
 

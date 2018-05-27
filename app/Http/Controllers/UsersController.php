@@ -22,7 +22,7 @@ class UsersController extends BaseController
 
 	public function updateProfile(ProfileUpdateRequest $request)
 	{
-		$params = $request->only('name', 'email', 'password');
+		$params = $request->all();
 		if (empty($params['password'])) {
 			unset($params['password']);
 		}

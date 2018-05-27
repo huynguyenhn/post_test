@@ -10,14 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateProfile');
-	Route::resource('users', 'UsersController');
+
+	Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'update', 'edit', 'delete']]);
 });
 
 Auth::routes();
