@@ -41,4 +41,25 @@
 			<span class="results">{{ trans('app.paginte', ['page' => $posts->currentPage(), 'total' => $posts->lastPage()]) }}</span>
 		</div>
 	</div>
+	@include('post._modal')
 @endsection
+
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.show-info').click(function () {
+				infoUrl = $(this).data('url');
+				$.ajax({
+					url: infoUrl,
+					success: function (response) {
+						if (response.success) {
+							$('#contentModal #postTitle').html(response.title);
+							$('#contentModal .modal-body').html(response.data);
+							$('#contentModal').modal('show');
+						}
+					}
+				});
+			});
+		});
+	</script>
+@endpush

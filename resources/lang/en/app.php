@@ -9,4 +9,7 @@ return [
 	'edit' => 'Edit',
 	'edit_error' => 'Item not found or not belong to you',
 	'paginte' => 'Page: :page of :total page(s)',
+	'show_error' => 'Item not found',
+	'show' => 'Show',
+	'close' => 'Close',
 ];

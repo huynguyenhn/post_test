@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Markdown;
 
 class Post extends BaseModel
 {
@@ -14,9 +15,19 @@ class Post extends BaseModel
 	protected $fillable = [
 		'title',
 		'content',
+		'content_convert',
 		'user_id',
 		'active',
 	];
+
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::saving(function ($model) {
+			$model->content_convert = Markdown::convertToHtml($model->content);
+		});
+	}
 
 	public function user()
 	{

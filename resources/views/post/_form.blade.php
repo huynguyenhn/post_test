@@ -12,7 +12,7 @@
 			{!! Form::label('content', trans('post.content')) !!}
 		</div>
 		<div class="col-8">
-			{!! Form::text('content', null, ['class' => 'form-control']) !!}
+			{!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content']) !!}
 		</div>
 	</div>
 	<div class="form-group">

@@ -25,4 +25,9 @@ class BaseService
 	{
 		return $this->model->find($id)->delete();
 	}
+
+	public function find($id)
+	{
+		return $this->model->find($id);
+	}
 }

@@ -60,4 +60,17 @@ class PostsController extends BaseController
 
 		return redirect()->action('PostsController@index')->withErrors(['error' => trans('app.fail')]);
 	}
+
+	public function show($id)
+	{
+		if ($post = $this->service->find($id)) {
+			return [
+				'success' => true,
+				'data' => view('post.show', compact('post'))->render(),
+				'title' => $post->title,
+			];
+		}
+
+		return ['success' => false];
+	}
 }

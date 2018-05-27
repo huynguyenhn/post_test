@@ -12,4 +12,6 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+	.js('node_modules/bootstrap-markdown-editor/dist/js/markdown-editor.min.js', 'public/js')
+	.js('node_modules/jquery/dist/jquery.min.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
