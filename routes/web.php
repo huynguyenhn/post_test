@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateProfile');
 
+	Route::get('posts/{id}/active', 'PostsController@active');
 	Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'update', 'edit', 'delete']]);
 });
 

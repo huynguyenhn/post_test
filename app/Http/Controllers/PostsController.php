@@ -18,7 +18,7 @@ class PostsController extends BaseController
 
 	public function index(Request $request)
 	{
-		$posts = $this->service->search($request->all());
+		$posts = $this->service->search($request->all(), auth()->user());
 
 		return view('post.index', compact('posts'));
 	}
@@ -72,5 +72,14 @@ class PostsController extends BaseController
 		}
 
 		return ['success' => false];
+	}
+
+	public function active($id)
+	{
+		if ($this->service->active($id, auth()->user())) {
+			return redirect()->action('PostsController@index')->with(['message' => trans('app.success')]);
+		}
+
+		return redirect()->action('PostsController@index')->withErrors(['error' => trans('app.fail')]);
 	}
 }

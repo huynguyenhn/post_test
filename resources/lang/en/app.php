@@ -12,4 +12,5 @@ return [
 	'show_error' => 'Item not found',
 	'show' => 'Show',
 	'close' => 'Close',
+	'active' => 'Active',
 ];

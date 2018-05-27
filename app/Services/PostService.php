@@ -12,9 +12,15 @@ class PostService extends BaseService
 		$this->model = $post;
 	}
 
-	public function search($conditions)
+	public function search($conditions, $user)
 	{
-		return $this->model->paginate(config('post.limit'));
+		$posts = $this->model->newQuery();
+		if (!$user || !$user->isAdmin()) {
+			$posts->orWhere('active', true);
+			$posts->orWhere('user_id', $user ? $user->id : null);
+		}
+
+		return $posts->paginate(config('post.limit'));
 	}
 
 	public function check($id, $user)
@@ -25,5 +31,16 @@ class PostService extends BaseService
 		}
 
 		return $post;
+	}
+
+	public function active($id, $user)
+	{
+		if (!$user || !$user->isAdmin()) {
+			return false;
+		}
+
+		parent::update(['active' => true], $id);
+
+		return true;
 	}
 }
